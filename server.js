@@ -1,7 +1,6 @@
 'use strict';
 
-// let weatherjson = require('../data/weather.json');
-//boilerplate
+const weatherjson = require('./data/weather.json');
 //Express server
 const express = require('express');
 //dotenv file
@@ -22,10 +21,31 @@ app.get('/', (request, response) => {
 });
 //End Boilerplate
 
-app.get('/captainfalcon', (request, response) => {
-  response.json({name: 'CaptainFalcon',
-    game: 'f-zero'});
-});
+app.get('/weather', handleWeather);
+
+function handleWeather (request, response){
+  console.log(request.query);
+  let lat = request.query.lat;
+  let lon = request.query.lon;
+  let searchQuery = request.query.searchQuery;
+  let foundCity = weatherjson.find(el => el.city_name.toLowerCase() === searchQuery.toLowerCase());
+  try{
+    let forecast = foundCity.data.map(day => new Forecast(day));
+    console.log(forecast);
+    response.send(forecast);
+  }
+  catch(error){
+    console.log('cant find city');
+    response.status(404).send('City not found');
+  }
+}
+
+class Forecast {
+  constructor(day){
+    this.date = day.valid_date;
+    this.description = `Low of ${day.low_temp}, high of ${day.high_temp} with ${day.weather.description}`;
+  }
+}
 
 app.get('*', (request,response) => {
   response.status(404).send('that route does not exist');
