@@ -1,6 +1,8 @@
 'use strict';
 
 const weatherjson = require('./data/weather.json');
+// const movieUrl = require(`https://api.themoviedb.org/3/movie/550?api_key=${process.env.MOVIE_API_KEY}`);
+
 //Express server
 const express = require('express');
 //dotenv file
