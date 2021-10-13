@@ -4,7 +4,7 @@
 **Version**: 1.0.0
 
 *Live Link*: [https://chris-rarig-city-explorer.netlify.app](https://chris-rarig-city-explorer.netlify.app)
-*GitHub*: [City-Explorer-Repo](https://github.com/chrisrarig1/city-explorer-api)
+*GitHub*: [City-Explorer-API-Repo](https://github.com/chrisrarig1/city-explorer-api)
 *Trello*: [Planning-Board](https://trello.com/b/yJ6s01tq/lab06)
 
 ## Overview
@@ -30,32 +30,34 @@
 
 ## Feature Time Reports
 
-1. *Name of feature*: City Data Pull
+1. *Name of feature*: Weather Data Pull
 
     - *Estimate of time needed to complete*: 2hrs
 
-    - *Start time*: 10-05-2021 10:15pm
+    - *Start time*: 10-10-2021 11:15am
 
-    - *Finish time*: 10-05-2021 11:45pm
+    - *Finish time*: 10-10-2021 2:00pm
 
-    - *Actual time needed to complete*: 1hr and 30mins
+    - *Actual time needed to complete*: 2hr and 45mins
 
-2. *Name of feature*: City Map
+2. *Name of feature*: Weather population
 
     - *Estimate of time needed to complete*: 1hrs
 
-    - *Start time*: 10-06-2021 8:30pm
+    - *Start time*: 10-11-2021 8:30pm
 
-    - *Finish time*: 10-06-2021 10:00pm
+    - *Finish time*: 10-11-2021 10:30pm
 
-    - *Actual time needed to complete*: 1hr and 30mins
+    - *Actual time needed to complete*: 2hrs
 
 3. *Name of feature*: Bootstrap
 
     - *Estimate of time needed to complete*: 1hrs
 
-    - *Start time*: 10-06-2021 10:00pm
+    - *Start time*: 10-13-2021 2:00pm
 
-    - *Finish time*: 10-06-2021 11:45pm
+    - *Finish time*: 10-13-2021 3:15pm
 
-    - *Actual time needed to complete*: 1hr and 45mins
+    - *Actual time needed to complete*: 1hr and 15mins
+
+![WRRC](WRRC2.jpg)
