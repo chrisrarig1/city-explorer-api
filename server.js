@@ -1,6 +1,9 @@
 'use strict';
 
 const weatherjson = require('./data/weather.json');
+
+
+// const axios = require('axios');
 //Express server
 const express = require('express');
 //dotenv file
@@ -22,6 +25,7 @@ app.get('/', (request, response) => {
 //End Boilerplate
 
 app.get('/weather', handleWeather);
+// app.get(`/movie`,handleMovie);
 
 function handleWeather (request, response){
   console.log(request.query);
@@ -47,10 +51,22 @@ class Forecast {
   }
 }
 
-app.get('*', (request,response) => {
-  response.status(404).send('that route does not exist');
-});
+// app.get('*', (request,response) => {
+//   response.status(404).send('that route does not exist');
+// });
 
-
+// async function handleMovie (request, response){
+//   let movieUrl = `https://api.themoviedb.org/3/movie/550?api_key=${process.env.MOVIE_API_KEY}`;
+//   try{
+//     let getMovie = await axios.get(movieUrl);
+//     let movie = getMovie.data;
+//     console.log(movie);
+//     response.send(movie);
+//   }
+//   catch(error){
+//     console.log('cant find city');
+//     response.status(404).send('City not found');
+//   }
+// }
 
 
