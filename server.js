@@ -1,12 +1,10 @@
 'use strict';
 
-const weatherjson = require('./data/weather.json');
 
-
-// const axios = require('axios');
+const axios = require('axios');
 //Express server
 const express = require('express');
-//dotenv file
+
 require('dotenv').config();
 //cors is security stuff
 const cors = require('cors');
@@ -25,16 +23,17 @@ app.get('/', (request, response) => {
 //End Boilerplate
 
 app.get('/weather', handleWeather);
-// app.get(`/movie`,handleMovie);
+app.get(`/movie`,handleMovie);
 
-function handleWeather (request, response){
-  console.log(request.query);
+async function handleWeather (request, response){
+
   let lat = request.query.lat;
   let lon = request.query.lon;
-  let searchQuery = request.query.searchQuery;
-  let foundCity = weatherjson.find(el => el.city_name.toLowerCase() === searchQuery.toLowerCase());
+  let weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&days=3&key=${process.env.WEATHER_API_KEY}`;
   try{
-    let forecast = foundCity.data.map(day => new Forecast(day));
+    let weatherInfo = await axios.get(weatherUrl);
+    let cityWeather = weatherInfo.data.data;
+    let forecast = cityWeather.map(day => new Forecast(day));
     console.log(forecast);
     response.send(forecast);
   }
@@ -46,27 +45,39 @@ function handleWeather (request, response){
 
 class Forecast {
   constructor(day){
-    this.date = day.valid_date;
-    this.description = `Low of ${day.low_temp}, high of ${day.high_temp} with ${day.weather.description}`;
+    this.date = day.datetime;
+    this.description = `Low of ${day.low_temp}, high of ${day.max_temp} with ${day.weather.description}`;
   }
 }
 
-// app.get('*', (request,response) => {
-//   response.status(404).send('that route does not exist');
-// });
+app.get('*', (request,response) => {
+  response.status(404).send('that route does not exist');
+});
 
-// async function handleMovie (request, response){
-//   let movieUrl = `https://api.themoviedb.org/3/movie/550?api_key=${process.env.MOVIE_API_KEY}`;
-//   try{
-//     let getMovie = await axios.get(movieUrl);
-//     let movie = getMovie.data;
-//     console.log(movie);
-//     response.send(movie);
-//   }
-//   catch(error){
-//     console.log('cant find city');
-//     response.status(404).send('City not found');
-//   }
-// }
+async function handleMovie (request, response){
+  let city = request.query.searchQuery;
+  let movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${city}`;
+  try{
+    let getMovie = await axios.get(movieUrl);
+    let movie = getMovie.data.results;
+    let movieData = movie.map(title => new Movie(title));
+    console.log(movie);
+    response.send(movieData);
+  }
 
-
+  catch(error){
+    console.log('movie not found');
+    response.status(404).send('movie not found');
+  }
+}
+class Movie {
+  constructor(title){
+    this.title = title.original_title;
+    this.overview = title.overview;
+    this.average_votes = title.vote_average;
+    this.total_votes = title.vote_count;
+    this.image = 'https://www.themoviedb.org/t/p/original'+title.poster_path;
+    this.popularity = title.popularity;
+    this.release_date = title.release_date;
+  }
+}
