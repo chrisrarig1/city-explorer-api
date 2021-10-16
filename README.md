@@ -63,4 +63,4 @@
 
     - *Actual time needed to complete*: 1hr and 15mins
 
-![WRRC](WRRC#.jpg)
+![WRRC](WRRC3.jpg)
