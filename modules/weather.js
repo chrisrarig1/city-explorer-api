@@ -19,7 +19,6 @@ async function handleWeather (request, response){
     response.status(404).send('City not found');
   }
 }
-
 class Forecast {
   constructor(day){
     this.date = day.datetime;
