@@ -6,6 +6,7 @@
 *Live Link*: [https://chris-rarig-city-explorer.netlify.app](https://chris-rarig-city-explorer.netlify.app)
 *GitHub*: [City-Explorer-API-Repo](https://github.com/chrisrarig1/city-explorer-api)
 *Trello*: [Planning-Board](https://trello.com/b/yJ6s01tq/lab06)
+*Heroku* [chris-r-city-explorer-server](https://chris-r-city-explorer-server.herokuapp.com/)
 
 ## Overview
 
