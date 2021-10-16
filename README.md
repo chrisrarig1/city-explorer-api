@@ -23,6 +23,9 @@
 
 - 10-06-2021 10:05pm - Application now has a fully-functional input, with a GET route for the location data
 - 10-06-2021 11:36pm - Application now has error handling and updated bootstrap format
+- 10-11-2021 11:00pm - Pulled in weather data from Json file
+- 10-12-2021 10:15pm - Added find function to generate weather
+- 10-13-2021 11:30pm - Replaced Json with API and pulled both weather and movie data to frontend
 
 ## Credit and Collaborations
 
@@ -60,4 +63,4 @@
 
     - *Actual time needed to complete*: 1hr and 15mins
 
-![WRRC](WRRC2.jpg)
+![WRRC](WRRC#.jpg)
