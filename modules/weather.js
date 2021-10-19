@@ -12,12 +12,11 @@ async function handleWeather (request, response){
     let cityWeather = weatherInfo.data.data;
     let forecast = cityWeather.map(day => new Forecast(day));
     console.log(forecast);
-    response.send(forecast);
-    response.status(200).send('Data pull successful');
+    response.status(200).send(forecast);
   }
   catch(error){
     console.log('cant find city');
-    response.status(404).send('City not found');
+    response.status(500).send('City not found');
   }
 }
 class Forecast {

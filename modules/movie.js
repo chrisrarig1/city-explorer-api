@@ -9,13 +9,12 @@ async function handleMovie (request, response){
     let movie = getMovie.data.results;
     let movieData = movie.map(title => new Movie(title));
     console.log(movie);
-    response.send(movieData);
-    response.status(200).send('Data pull successful');
+    response.status(200).send(movieData);
   }
 
   catch(error){
     console.log('movie not found');
-    response.status(404).send('movie not found');
+    response.status(500).send('Movies not found');
   }
 }
 class Movie {
