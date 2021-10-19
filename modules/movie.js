@@ -10,6 +10,7 @@ async function handleMovie (request, response){
     let movieData = movie.map(title => new Movie(title));
     console.log(movie);
     response.send(movieData);
+    response.status(200).send('Data pull successful');
   }
 
   catch(error){
