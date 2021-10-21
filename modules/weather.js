@@ -3,10 +3,11 @@
 const axios = require('axios');
 
 async function handleWeather (request, response){
-
   let lat = request.query.lat;
   let lon = request.query.lon;
   let weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&days=3&key=${process.env.WEATHER_API_KEY}`;
+
+
   try{
     let weatherInfo = await axios.get(weatherUrl);
     let cityWeather = weatherInfo.data.data;
@@ -14,11 +15,13 @@ async function handleWeather (request, response){
     console.log(forecast);
     response.status(200).send(forecast);
   }
+
   catch(error){
     console.log('cant find city');
     response.status(500).send('City not found');
   }
 }
+
 class Forecast {
   constructor(day){
     this.date = day.datetime;
