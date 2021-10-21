@@ -1,20 +1,31 @@
 'use strict';
 const axios = require('axios');
+let cache = require('./cache.js');
 
 async function handleMovie (request, response){
   let city = request.query.searchQuery;
   let movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${city}`;
-  try{
-    let getMovie = await axios.get(movieUrl);
-    let movie = getMovie.data.results;
-    let movieData = movie.map(title => new Movie(title));
-    console.log(movie);
-    response.status(200).send(movieData);
-  }
+  if(cache[city] && (Date.now() - cache[city].timestamp < 100000)){
+    response.status(200).send(cache[city].movieData);
+    console.log(`Cache HIT!`);}
+  else {
+    try{
+      let getMovie = await axios.get(movieUrl);
+      let movie = getMovie.data.results;
+      let movieData = movie.map(title => new Movie(title));
+      cache[city] ={
+        movieData:movieData,
+        timestamp: Date.now()
+      };
+      console.log(movie);
+      response.status(200).send(movieData);
+      console.log('Cache Miss!!!');
+    }
 
-  catch(error){
-    console.log('movie not found');
-    response.status(500).send('Movies not found');
+    catch(error){
+      console.log('movie not found');
+      response.status(500).send('Movies not found');
+    }
   }
 }
 class Movie {
@@ -28,5 +39,6 @@ class Movie {
     this.release_date = title.release_date;
   }
 }
+
 
 module.exports = handleMovie;

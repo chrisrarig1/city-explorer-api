@@ -27,6 +27,7 @@
 - 10-11-2021 11:00pm - Pulled in weather data from Json file
 - 10-12-2021 10:15pm - Added find function to generate weather
 - 10-13-2021 11:30pm - Replaced Json with API and pulled both weather and movie data to frontend
+- 10-16-2021 4:30pm - Organized code into Modules
 
 ## Credit and Collaborations
 
@@ -63,5 +64,14 @@
     - *Finish time*: 10-13-2021 3:15pm
 
     - *Actual time needed to complete*: 1hr and 15mins
+4. *Name of feature*: Cache
 
-![WRRC](WRRC3.jpg)
+    - *Estimate of time needed to complete*: 1hrs
+
+    - *Start time*: 10-19-2021 10:45pm
+
+    - *Finish time*: 10-19-2021 12:00am
+
+    - *Actual time needed to complete*: 1hr and 15mins
+
+![WRRC](WRRC4.png)
